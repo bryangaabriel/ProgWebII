@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitação de Férias</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 500px;
+        }
+
+        .form-container h2 {
+            margin-top: 0;
+            color: #333;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .form-group .status {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .form-group .status input {
+            width: auto;
+        }
+
+        .form-footer {
+            text-align: right;
+        }
+
+        .form-footer button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .form-footer button:hover {
+            background-color: #45a049;
+        }
+
+        .alert {
+            font-size: 12px;
+            color: #555;
+            background-color: #eaf4fc;
+            padding: 10px;
+            margin-top: 15px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Solicitação de Férias</h2>
+        <form>
+            <div class="form-group">
+                <label for="colaborador">Colaborador</label>
+                <input type="text" id="colaborador" name="colaborador" placeholder="Nome do Colaborador">
+            </div>
+
+            <div class="form-group">
+                <label for="data">Data</label>
+                <input type="date" id="data" name="data">
+            </div>
+
+            <div class="form-group">
+                <label>Status</label>
+                <div class="status">
+                    <input type="radio" id="solicitando" name="status" value="solicitando">
+                    <label for="solicitando">Solicitando</label>
+
+                    <input type="radio" id="aprovado" name="status" value="aprovado">
+                    <label for="aprovado">Aprovado</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="departamento">Departamento</label>
+                <input type="text" id="departamento" name="departamento" placeholder="Departamento">
+            </div>
+
+            <div class="form-group">
+                <label for="centro-custo">Centro de Custo</label>
+                <input type="text" id="centro-custo" name="centro-custo" placeholder="Centro de Custo">
+            </div>
+
+            <div class="form-group">
+                <label for="unidade-negocio">Unidade de Negócio</label>
+                <input type="text" id="unidade-negocio" name="unidade-negocio" placeholder="Unidade de Negócio">
+            </div>
+
+            <div class="form-group">
+                <label for="inicio-ferias">Início das Férias</label>
+                <input type="date" id="inicio-ferias" name="inicio-ferias">
+            </div>
+
+            <div class="form-group">
+                <label for="dias">Dias</label>
+                <input type="number" id="dias" name="dias" placeholder="Quantidade de dias">
+            </div>
+
+            <div class="form-footer">
+                <button type="submit">Enviar Solicitação</button>
+            </div>
+
+            <div class="alert">
+                AVISO: Entregue a Carteira de Trabalho e Previdência Social do Funcionário no Adm. de Pessoal para anotações de férias.
+            </div>
+        </form>
+    </div>
+</body>
+</html>
