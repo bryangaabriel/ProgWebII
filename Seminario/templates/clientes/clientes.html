@@ -1,0 +1,107 @@
+<!-- clientes.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clientes</title>
+</head>
+<body>
+    <h1>Lista de Clientes</h1>
+    
+    <!-- Formulário para adicionar um novo cliente -->
+    <h2>Cadastrar Novo Cliente</h2>
+    <form id="clienteForm">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required><br><br>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+        
+        <label for="telefone">Telefone:</label>
+        <input type="text" id="telefone" name="telefone" required><br><br>
+        
+        <label for="endereco">Endereço:</label>
+        <input type="text" id="endereco" name="endereco" required><br><br>
+        
+        <button type="submit">Adicionar Cliente</button>
+    </form>
+    
+    <hr>
+    
+    <h2>Clientes Cadastrados</h2>
+    <ul id="clientesList">
+        <!-- A lista de clientes será preenchida aqui via JavaScript -->
+    </ul>
+
+    <script>
+        // Função para buscar e exibir clientes cadastrados
+        function fetchClientes() {
+            fetch('/api/clientes/')  // URL da API para listar clientes
+                .then(response => response.json())
+                .then(data => {
+                    const clientesList = document.getElementById('clientesList');
+                    clientesList.innerHTML = '';  // Limpa a lista antes de preencher
+
+                    data.forEach(cliente => {
+                        const li = document.createElement('li');
+                        li.innerHTML = `
+                            <strong>${cliente.nome}</strong> - ${cliente.email} - ${cliente.telefone} - ${cliente.endereco} 
+                            <button onclick="deleteCliente(${cliente.id})">Excluir</button>
+                        `;
+ 
+                        clientesList.appendChild(li);
+                    });
+                })
+                .catch(error => console.error('Erro ao buscar clientes:', error));
+        }
+
+        // Função para enviar o formulário e adicionar um novo cliente
+        document.getElementById('clienteForm').addEventListener('submit', function (event) {
+            event.preventDefault();  // Evita o envio do formulário tradicional
+
+            const formData = new FormData();
+            formData.append('nome', document.getElementById('nome').value);
+            formData.append('email', document.getElementById('email').value);
+            formData.append('telefone', document.getElementById('telefone').value);
+            formData.append('endereco', document.getElementById('endereco').value);
+
+            fetch('/api/clientes/', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json',
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Cliente adicionado com sucesso!');
+                fetchClientes();  // Atualiza a lista de clientes
+            })
+            .catch(error => console.error('Erro ao adicionar cliente:', error));
+        });
+
+        // Função para excluir um cliente
+        function deleteCliente(id) {
+            fetch(`/api/clientes/${id}/`, {
+                method: 'DELETE',
+                headers: {
+                    'Accept': 'application/json',
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Cliente excluído com sucesso!');
+                    fetchClientes();  // Atualiza a lista de clientes
+                } else {
+                    alert('Erro ao excluir cliente');
+                }
+            })
+            .catch(error => console.error('Erro ao excluir cliente:', error));
+        }
+
+        // Carrega os clientes ao carregar a página
+        window.onload = fetchClientes;
+    </script>
+</body>
+</html>

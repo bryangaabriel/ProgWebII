@@ -1,0 +1,41 @@
+<!-- listar_advogados.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Advogados</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <h1>Lista de Advogados</h1>
+    <a href="{% url 'adicionar_advogado' %}">Adicionar Novo Advogado</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Telefone</th>
+                <th>OAB</th>
+                <th>Especialização</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for advogado in advogados %}
+            <tr>
+                <td>{{ advogado.nome }}</td>
+                <td>{{ advogado.email }}</td>
+                <td>{{ advogado.telefone }}</td>
+                <td>{{ advogado.oab }}</td>
+                <td>{{ advogado.especializacao }}</td>
+                <td>
+                    <a href="{% url 'editar_advogado' advogado.pk %}">Editar</a>
+                    <a href="{% url 'excluir_advogado' advogado.pk %}" onclick="return confirm('Você tem certeza que deseja excluir?');">Excluir</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Inicial</title>
+    {% load static %}  <!-- Carrega arquivos estáticos -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}"> <!-- Vincula o CSS -->
+</head>
+<body>
+    <h1>Bem-vindo à página inicial do sistema!</h1>
+    <p>Selecione uma das opções abaixo para navegar:</p>
+
+    <!-- Links para outras páginas -->
+    <ul>
+        <li><a href="">Clientes</a></li>
+        <li><a href="">Financeiro</a></li>
+        <li><a href="">Processos</a></li>
+        <li><a href="">Agenda</a></li>
+        <li><a href="../advogados/templates/advogados/listar_advogados.html">Advogados</a></li>
+        <li><a href="">Documentos</a></li>
+    </ul>
+</body>
+</html>

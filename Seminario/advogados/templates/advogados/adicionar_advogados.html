@@ -1,0 +1,19 @@
+<!-- templates/advogados/adicionar.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Advogado</title>
+    <link rel="stylesheet" href="{% static 'advogados/css/style.css' %}">
+</head>
+<body>
+    <h1>Adicionar Novo Advogado</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Adicionar Advogado</button>
+    </form>
+    <a href="{% url 'listar_advogados' %}">Voltar à lista</a>
+</body>
+</html>

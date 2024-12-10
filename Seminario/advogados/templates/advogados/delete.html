@@ -1,0 +1,18 @@
+<!-- templates/advogados/excluir.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excluir Advogado</title>
+    <link rel="stylesheet" href="{% static 'advogados/css/style.css' %}">
+</head>
+<body>
+    <h1>Tem certeza que deseja excluir o advogado {{ advogado.nome }}?</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit">Excluir</button>
+    </form>
+    <a href="{% url 'listar_advogados' %}">Cancelar</a>
+</body>
+</html>
